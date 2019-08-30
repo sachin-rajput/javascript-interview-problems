@@ -1,5 +1,5 @@
 import LinkedListNode from "./LinkedListNode";
-import Comparator from "../../../utils/comparators";
+import Comparator from "./../../utils/comparators";
 
 class LinkedList {
   /**
@@ -11,6 +11,8 @@ class LinkedList {
     this.head = null;
     /** @var LinkedListNode */
     this.tail = null;
+
+    this.compare = new Comparator(compareFunction);
   }
 
   /**
@@ -52,6 +54,68 @@ class LinkedList {
     }
 
     return this;
+  }
+
+  /**
+   * Delete the first occurence of the value and
+   * return the LinkedListNode
+   * @param {*} value
+   * @return {LinkedListNode}
+   */
+  delete(value) {
+    if (!this.head) return null;
+
+    let deleteNode = null;
+
+    // If head value is the value we looking for then we
+    // return it and update the head
+    if (this.compare.equal(this.head.value, value)) {
+      deleteNode = this.head;
+      this.head = this.head.next;
+      return deleteNode;
+    }
+
+    // Loop over and delete the one
+    let currentNode = this.head;
+    let previousNode = this.head;
+    while (currentNode) {
+      if (this.compare.equal(currentNode.value, value)) {
+        deleteNode = currentNode;
+        if (!currentNode.next) {
+          this.tail = previousNode;
+          this.tail.next = null;
+          return deleteNode;
+        }
+        previousNode.next = currentNode.next;
+        return deleteNode;
+      } else {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Find the first occurence of the value and
+   * return the LinkedListNode
+   * @param {*} value
+   * @return {LinkedList}
+   */
+  find(value) {
+    if (!this.head) return null;
+
+    let currentNode = this.head;
+
+    while (currentNode) {
+      if (this.compare.equal(currentNode.value, value)) {
+        return currentNode;
+      }
+      currentNode = currentNode.next;
+    }
+
+    return null;
   }
 }
 

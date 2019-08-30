@@ -141,6 +141,62 @@ class LinkedList {
 
     return strBuffer;
   }
+
+  /**
+   * Creates a LinkedList from an Array
+   * @param {Array} arr
+   * @returns {LinkedList}
+   */
+  fromArray(arr) {
+    if (!arr) return null;
+
+    arr.forEach(item => this.append(item));
+
+    return this;
+  }
+
+  /**
+   * Returns an array of values from LinkedList
+   */
+  toArray() {
+    const nodes = [];
+
+    let currentNode = this.head;
+    while (currentNode) {
+      nodes.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return nodes;
+  }
+
+  /**
+   * Reverses a given LinkedList
+   * @returns {LinkedList}
+   */
+  reverse() {
+    let currentNode = this.head;
+    let previousNode = null;
+    let nextNode = null;
+
+
+    while (currentNode) {
+      // store next node
+      nextNode = currentNode.next;
+
+      // change the next node of current node to previous node
+      currentNode.next = previousNode;
+
+      // Move previous node and current node
+      previousNode = currentNode;
+      currentNode = nextNode;
+    }
+
+    // reset tail
+    this.tail = this.head;
+    this.head = previousNode;
+
+    return this;
+  }
 }
 
 export default LinkedList;

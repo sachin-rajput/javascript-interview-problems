@@ -93,7 +93,36 @@ describe("LinkedList", () => {
     list.append({ key: 1, text: "Hello 1" }).append({ key: 2, text: "Hello 2" });
 
     const printFunction = value => `${value.text}`;
+    const nodeStringifier = value => `${value.key}:${value.text}`;
 
     expect(list.toString({ separator: ",", callback: printFunction })).toBe("Hello 1,Hello 2");
+    expect(list.toString({ separator: "|", callback: nodeStringifier })).toBe("1:Hello 1|2:Hello 2");
+  });
+
+  it("should create a list from an array", () => {
+    const input = [1, 2, 3, 4];
+    const list = new LinkedList();
+    list.fromArray(input);
+
+    expect(list.head.value).toBe(1);
+    expect(list.toString()).toBe("1 2 3 4");
+  });
+
+  it("should create a list and use a toArray to convert to array", () => {
+    const list = new LinkedList();
+    list.append({ key: 1, text: "Hello 1" }).append({ key: 2, text: "Hello 2" });
+
+    const arr = list.toArray();
+
+    expect(arr[0].key).toBe(1);
+    expect(arr[1].text).toBe("Hello 2");
+  });
+
+  it("should create a list and reverse it", () => {
+    const list = new LinkedList().fromArray([1, 3, 5, 6]);
+
+    list.reverse();
+
+    expect(list.toString()).toBe("6 5 3 1");
   });
 });

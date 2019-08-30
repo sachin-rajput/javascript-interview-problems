@@ -6,6 +6,7 @@ describe("LinkedList", () => {
 
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
+    expect(list.toString()).toBe("");
   });
 
   it("should create a list and prepend a node with a value", () => {
@@ -13,6 +14,7 @@ describe("LinkedList", () => {
     list.prepend(2);
 
     expect(list.head.value).toBe(2);
+    expect(list.toString()).toBe("2");
   });
 
   it("should create a list and append a node with a value", () => {
@@ -21,6 +23,7 @@ describe("LinkedList", () => {
     list.append(4);
 
     expect(list.tail.value).toBe(4);
+    expect(list.toString()).toBe("1 4");
   });
 
   it("should create a list and delete first occurence", () => {
@@ -35,7 +38,7 @@ describe("LinkedList", () => {
 
     expect(deletedNode.value).toBe(4);
     expect(list.tail.value).toBe(4);
-    expect(list.head.next.next.value).toBe(6);
+    expect(list.toString()).toBe("2 3 6 4");
   });
 
   it("should create a list with custom comparator function", () => {
@@ -66,10 +69,31 @@ describe("LinkedList", () => {
       .append(3)
       .append(45);
 
-    const findItem1 = list.find(54);
-    const findItem2 = list.find(45);
+    const findItem1 = list.find({ value: 54 });
+    const findItem2 = list.find({ value: 45 });
 
     expect(findItem1).toBeNull();
     expect(findItem2.value).toBe(45);
+  });
+
+  it("should create a list and find the first match using the callback", () => {
+    const list = new LinkedList();
+    list
+      .append({ key: 2, text: "this is 2" })
+      .append({ key: 4, text: "this is 4" })
+      .append({ key: 6, text: "this is 6" });
+
+    const findItem1 = list.find({ callback: value => value.key === 2 });
+
+    expect(findItem1.value.text).toBe("this is 2");
+  });
+
+  it("should create a list and use a custom toString function", () => {
+    const list = new LinkedList();
+    list.append({ key: 1, text: "Hello 1" }).append({ key: 2, text: "Hello 2" });
+
+    const printFunction = value => `${value.text}`;
+
+    expect(list.toString({ separator: ",", callback: printFunction })).toBe("Hello 1,Hello 2");
   });
 });

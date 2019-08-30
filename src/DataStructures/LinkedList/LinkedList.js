@@ -102,12 +102,15 @@ class LinkedList {
    * @param {*} value
    * @return {LinkedList}
    */
-  find(value) {
+  find({ value = undefined, callback = undefined }) {
     if (!this.head) return null;
 
     let currentNode = this.head;
 
     while (currentNode) {
+      if (callback && callback(currentNode.value)) {
+        return currentNode;
+      }
       if (this.compare.equal(currentNode.value, value)) {
         return currentNode;
       }
@@ -115,6 +118,28 @@ class LinkedList {
     }
 
     return null;
+  }
+
+  /**
+   * Convert the LinkedList to String format,
+   * also takes in a custom print function - callback
+   */
+  toString({ separator = " ", callback = undefined } = {}) {
+    if (!this.head) return "";
+
+    let currentNode = this.head;
+    let strBuffer = "";
+
+    while (currentNode) {
+      if (callback) strBuffer += callback(currentNode.value);
+      else strBuffer += `${currentNode.value}`;
+
+      if (currentNode.next) strBuffer += separator;
+
+      currentNode = currentNode.next;
+    }
+
+    return strBuffer;
   }
 }
 

@@ -1,4 +1,4 @@
 module.exports = {
   printWidth: 120,
-  arrowParens: true
+  arrowParens: "avoid"
 };

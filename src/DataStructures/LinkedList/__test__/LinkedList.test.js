@@ -41,6 +41,22 @@ describe("LinkedList", () => {
     expect(list.toString()).toBe("2 3 6 4");
   });
 
+  it("should create a list and delete tail", () => {
+    const list = new LinkedList();
+    list
+      .append(2)
+      .append(3)
+      .append(4)
+      .append(6)
+      .append(14);
+    const deletedNode = list.delete(14);
+    const deletedNoNode = list.delete(15);
+
+    expect(deletedNode.value).toBe(14);
+    expect(deletedNoNode).toBeNull();
+    expect(list.toString()).toBe("2 3 4 6");
+  });
+
   it("should create a list with custom comparator function", () => {
     function customComparator(a, b) {
       if (a.key === b) return 0;

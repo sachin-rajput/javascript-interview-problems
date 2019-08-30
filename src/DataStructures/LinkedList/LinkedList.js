@@ -1,5 +1,5 @@
 import LinkedListNode from "./LinkedListNode";
-import Comparator from "./../../utils/comparators";
+import Comparator from "../../utils/comparators";
 
 class LinkedList {
   /**
@@ -88,10 +88,9 @@ class LinkedList {
         }
         previousNode.next = currentNode.next;
         return deleteNode;
-      } else {
-        previousNode = currentNode;
-        currentNode = currentNode.next;
       }
+      previousNode = currentNode;
+      currentNode = currentNode.next;
     }
 
     return null;

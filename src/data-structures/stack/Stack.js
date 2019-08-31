@@ -8,8 +8,6 @@ export default class Stack {
     this.linkedList = new LinkedList();
   }
 
-  // toArray
-
   /**
    * Check if the stack is empty
    */

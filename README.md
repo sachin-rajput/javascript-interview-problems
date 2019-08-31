@@ -24,6 +24,10 @@ the data.
 
 - `B` [Linked List](src/data-structures/linked-list)
 
+- `B` [Queue](src/data-structures/queue)
+
+- `B` [Stack](src/data-structures/stack)
+
 ## How to use this repository
 
 **Install all dependencies**

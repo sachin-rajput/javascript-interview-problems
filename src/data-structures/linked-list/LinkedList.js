@@ -16,9 +16,9 @@ class LinkedList {
   }
 
   /**
-   *
+   * Insert node from the head position
    * @param {*} value
-   * @return {LinkedList}
+   * @return {LinkedList} LinkedList Object
    */
   prepend(value) {
     // Make a new node and point next to current this.head
@@ -36,9 +36,9 @@ class LinkedList {
   }
 
   /**
-   *
+   * Insert node from the tail position
    * @param {*} value
-   * @return {LinkedList}
+   * @return {LinkedList} LinkedList Object
    */
   append(value) {
     // Make a new node and point next to null
@@ -98,7 +98,7 @@ class LinkedList {
 
   /**
    * Deletes the head of the LinkedList
-   * @returns {linkedList}
+   * @returns {LinkedList} LinkedList Object
    */
   deleteHead() {
     if (!this.head) return this;
@@ -117,7 +117,7 @@ class LinkedList {
    * Find the first occurence of the value and
    * return the LinkedListNode
    * @param {*} value
-   * @return {LinkedList}
+   * @return {LinkedList} LinkedList Object
    */
   find({ value = undefined, callback = undefined }) {
     if (!this.head) return null;
@@ -162,7 +162,7 @@ class LinkedList {
   /**
    * Creates a LinkedList from an Array
    * @param {Array} arr
-   * @returns {LinkedList}
+   * @returns {LinkedList} LinkedList Object
    */
   fromArray(arr) {
     if (!arr) return null;
@@ -188,7 +188,7 @@ class LinkedList {
 
   /**
    * Reverses a given LinkedList
-   * @returns {LinkedList}
+   * @returns {LinkedList} LinkedList Object
    */
   reverse() {
     let currentNode = this.head;

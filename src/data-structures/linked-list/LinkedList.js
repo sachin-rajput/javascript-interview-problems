@@ -97,6 +97,23 @@ class LinkedList {
   }
 
   /**
+   * Deletes the head of the LinkedList
+   * @returns {linkedList}
+   */
+  deleteHead() {
+    if (!this.head) return this;
+
+    const deletedNode = this.head;
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+    return deletedNode;
+  }
+
+  /**
    * Find the first occurence of the value and
    * return the LinkedListNode
    * @param {*} value

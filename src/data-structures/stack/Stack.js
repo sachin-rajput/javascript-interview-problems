@@ -8,7 +8,7 @@ export default class Stack {
     this.linkedList = new LinkedList();
   }
 
-  // pop, toString, toArray
+  // toArray
 
   /**
    * Check if the stack is empty
@@ -34,5 +34,27 @@ export default class Stack {
   peek() {
     if (this.isEmpty()) return null;
     return this.linkedList.head;
+  }
+
+  /**
+   * Pop the item from the top from the Stack
+   */
+  pop() {
+    if (this.isEmpty()) return null;
+    return this.linkedList.deleteHead();
+  }
+
+  /**
+   * Print the Stack as String
+   */
+  toString(callback) {
+    return this.linkedList.toString(callback);
+  }
+
+  /**
+   * Convert the stack as an array
+   */
+  toArray() {
+    return this.linkedList.toArray();
   }
 }

@@ -39,4 +39,49 @@ describe("Stack", () => {
 
     expect(peekNode.value).toBe(344);
   });
+
+  it("should create a stack and pop an item from top.", () => {
+    const newStack = new Stack();
+    newStack.push(45);
+    newStack.push(415);
+    newStack.push(465);
+
+    const popNode = newStack.pop();
+    const peekNode = newStack.peek();
+
+    expect(popNode.value).toBe(465);
+    expect(peekNode.value).toBe(415);
+
+    newStack.pop();
+    newStack.pop();
+    const noItems = newStack.pop();
+    expect(newStack.isEmpty()).toBeTruthy();
+    expect(noItems).toBeNull();
+  });
+
+  it("should create a stack and print it.", () => {
+    const newStack = new Stack();
+
+    newStack
+      .push(4)
+      .push(67)
+      .push(78);
+
+    const strStack = newStack.toString();
+
+    expect(strStack).toBe("78 67 4");
+  });
+
+  it("should create a stack and convert to array.", () => {
+    const newStack = new Stack();
+
+    newStack
+      .push(4)
+      .push(67)
+      .push(78);
+
+    const arrStack = newStack.toArray();
+
+    expect(arrStack[0]).toBe(78);
+  });
 });

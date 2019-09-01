@@ -108,6 +108,30 @@ export default class DoublyLinkedList {
   }
 
   /**
+   * Find the first occurence of the value and
+   * return the DoublyLinkedList
+   * @param {*} value
+   * @return {DoublyLinkedList} DoublyLinkedList Object
+   */
+  find({ value = undefined, callback = undefined }) {
+    if (!this.head) return null;
+
+    let currentNode = this.head;
+
+    while (currentNode) {
+      if (callback && callback(currentNode.value)) {
+        return currentNode;
+      }
+      if (this.compare.equal(currentNode.value, value)) {
+        return currentNode;
+      }
+      currentNode = currentNode.next;
+    }
+
+    return null;
+  }
+
+  /**
    * Convert the doubly linked list to array
    * @returns {[DoublyLinkedListNode]} Array of DoublyLinkedListNode
    */
@@ -156,5 +180,37 @@ export default class DoublyLinkedList {
     }
 
     return strBuffer;
+  }
+
+  /**
+   * Reverses a given DoublyLinkedList
+   * @returns {DoublyLinkedList} DoublyLinkedList Object
+   */
+  reverse() {
+    if (this.isEmpty()) return this;
+
+    let currentNode = this.head;
+    let nextNode = null;
+    let prevNode = null;
+
+    while (currentNode) {
+      // store my next node and prev node of current node
+      nextNode = currentNode.next;
+      prevNode = currentNode.prev;
+
+      // update next and prev of current node
+      currentNode.next = prevNode;
+      currentNode.prev = nextNode;
+
+      // move prev node to current node and current node to next node
+      prevNode = currentNode;
+      currentNode = nextNode;
+    }
+
+    // reset head and tail
+    this.tail = this.head;
+    this.head = prevNode;
+
+    return this;
   }
 }

@@ -54,6 +54,9 @@ describe("DoublyLinkedList", () => {
     deletedNode = list.delete(5);
     expect(deletedNode.value).toBe(5);
     expect(list.toString()).toBe("");
+
+    deletedNode = list.delete(6);
+    expect(deletedNode).toBeNull();
   });
 
   it("should create a doubly linked list and convert to array.", () => {
@@ -82,5 +85,42 @@ describe("DoublyLinkedList", () => {
 
     list.fromArray([1, 4, 5], "prepend");
     expect(list.toString()).toBe("5 4 1 1 4 5");
+  });
+
+  it("should create a doubly linked list and find an item.", () => {
+    const list = new DoublyLinkedList();
+    list.fromArray([1, 4, 5]);
+    expect(list.toString()).toBe("1 4 5");
+    expect(list.tail.value).toBe(5);
+    expect(list.tail.prev.next).toBe(list.tail);
+
+    let findItem = list.find({ value: 4 });
+    expect(findItem.value).toBe(4);
+
+    findItem = list.find({ value: 14 });
+    expect(findItem).toBeNull();
+  });
+
+  it("should create a doubly linked list and find the first match using the callback", () => {
+    const list = new DoublyLinkedList();
+    list
+      .append({ key: 2, text: "this is 2" })
+      .append({ key: 4, text: "this is 4" })
+      .append({ key: 6, text: "this is 6" });
+
+    const findItem1 = list.find({ callback: value => value.key === 2 });
+
+    expect(findItem1.value.text).toBe("this is 2");
+  });
+
+  it("should create a list and reverse it", () => {
+    const list = new DoublyLinkedList();
+    list.reverse();
+    expect(list.toString()).toBe("");
+
+    list.fromArray([1, 3, 5, 6]);
+    list.reverse();
+
+    expect(list.toString()).toBe("6 5 3 1");
   });
 });

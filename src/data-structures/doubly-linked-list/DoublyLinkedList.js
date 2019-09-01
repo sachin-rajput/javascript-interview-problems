@@ -26,13 +26,13 @@ export default class DoublyLinkedList {
   /**
    * Adds a node from the head position
    * @param {*} value
-   * @returns {DoublyLinkedList} DoublyLinkedList Object
+   * @return {DoublyLinkedList} DoublyLinkedList Object
    */
   prepend(value) {
     const newNode = new DoublyLinkedListNode(value, this.head);
     if (!this.isEmpty()) this.head.prev = newNode;
     this.head = newNode;
-    if (this.isEmpty()) this.tail = newNode;
+    if (!this.tail) this.tail = newNode;
 
     return this;
   }
@@ -40,7 +40,7 @@ export default class DoublyLinkedList {
   /**
    * Adds a node from the tail position
    * @param {*} value
-   * @returns {DoublyLinkedList} DoublyLinkedList Object
+   * @return {DoublyLinkedList} DoublyLinkedList Object
    */
   append(value) {
     const newNode = new DoublyLinkedListNode(value, null, this.tail);
@@ -54,7 +54,7 @@ export default class DoublyLinkedList {
   /**
    * Delete the first occurence of node by value from the list.
    * @param {*} value
-   * @returns {DoublyLinkedListNode} DoublyLinkedListNode Object
+   * @return {DoublyLinkedListNode} DoublyLinkedListNode Object
    */
   delete(value) {
     if (this.isEmpty()) return null;
@@ -81,7 +81,7 @@ export default class DoublyLinkedList {
 
   /**
    * Delete a node from the head position from the list.
-   * @returns {DoublyLinkedListNode} DoublyLinkedListNode Object
+   * @return {DoublyLinkedListNode} DoublyLinkedListNode Object
    */
   deleteHead() {
     if (this.isEmpty()) return null;
@@ -95,7 +95,7 @@ export default class DoublyLinkedList {
 
   /**
    * Delete a node from the tail position from the list.
-   * @returns {DoublyLinkedListNode} DoublyLinkedListNode Object
+   * @return {DoublyLinkedListNode} DoublyLinkedListNode Object
    */
   deleteTail() {
     if (this.isEmpty()) return null;
@@ -133,7 +133,7 @@ export default class DoublyLinkedList {
 
   /**
    * Convert the doubly linked list to array
-   * @returns {[DoublyLinkedListNode]} Array of DoublyLinkedListNode
+   * @return {[DoublyLinkedListNode]} Array of DoublyLinkedListNode
    */
   toArray() {
     const arr = [];
@@ -184,7 +184,7 @@ export default class DoublyLinkedList {
 
   /**
    * Reverses a given DoublyLinkedList
-   * @returns {DoublyLinkedList} DoublyLinkedList Object
+   * @return {DoublyLinkedList} DoublyLinkedList Object
    */
   reverse() {
     if (this.isEmpty()) return this;

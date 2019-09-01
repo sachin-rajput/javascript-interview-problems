@@ -14,7 +14,7 @@ export default class Queue {
 
   /**
    * Enqueue an item in the queue, from tail
-   * @returns {Queue} Queue Object
+   * @return {Queue} Queue Object
    */
   enqueue(value) {
     this.linkedlist.append(value);
@@ -23,7 +23,7 @@ export default class Queue {
 
   /**
    * Peek into the queue and get the item at head position
-   * @returns {*} any
+   * @return {*} any
    */
   peek() {
     return this.isEmpty() ? null : this.linkedlist.head.value;
@@ -31,7 +31,7 @@ export default class Queue {
 
   /**
    * Removes a node from the head position
-   * @returns {LinkedListNode} LinkedListNode Object
+   * @return {LinkedListNode} LinkedListNode Object
    */
   dequeue() {
     if (this.isEmpty()) return null;
@@ -40,7 +40,7 @@ export default class Queue {
 
   /**
    * Returns queue in Array Format
-   * @returns {[*]} Array
+   * @return {[*]} Array
    */
   toArray() {
     return this.linkedlist.toArray();

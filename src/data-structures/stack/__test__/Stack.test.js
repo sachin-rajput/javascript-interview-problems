@@ -82,6 +82,6 @@ describe("Stack", () => {
 
     const arrStack = newStack.toArray();
 
-    expect(arrStack[0]).toBe(78);
+    expect(arrStack[0].value).toBe(78);
   });
 });

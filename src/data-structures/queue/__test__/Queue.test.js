@@ -54,7 +54,7 @@ describe("Queue", () => {
       .enqueue(6)
       .enqueue(5);
 
-    expect(newQueue.toArray()[0]).toBe(56);
+    expect(newQueue.toArray()[0].value).toBe(56);
   });
 
   it("should create a Queue and print as string ", () => {

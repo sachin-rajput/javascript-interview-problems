@@ -16,6 +16,13 @@ class LinkedList {
   }
 
   /**
+   * Check if list is empty
+   */
+  isEmpty() {
+    return this.head === null;
+  }
+
+  /**
    * Insert node from the head position
    * @param {*} value
    * @return {LinkedList} LinkedList Object
@@ -63,17 +70,13 @@ class LinkedList {
    * @return {LinkedListNode}
    */
   delete(value) {
-    if (!this.head) return null;
+    if (this.isEmpty()) return null;
 
     let deleteNode = null;
 
     // If head value is the value we looking for then we
     // return it and update the head
-    if (this.compare.equal(this.head.value, value)) {
-      deleteNode = this.head;
-      this.head = this.head.next;
-      return deleteNode;
-    }
+    if (this.compare.equal(this.head.value, value)) return this.deleteHead();
 
     // Loop over and delete the one
     let currentNode = this.head;
@@ -81,11 +84,7 @@ class LinkedList {
     while (currentNode) {
       if (this.compare.equal(currentNode.value, value)) {
         deleteNode = currentNode;
-        if (!currentNode.next) {
-          this.tail = previousNode;
-          this.tail.next = null;
-          return deleteNode;
-        }
+        if (!currentNode.next) return this.deleteTail(previousNode);
         previousNode.next = currentNode.next;
         return deleteNode;
       }
@@ -97,11 +96,53 @@ class LinkedList {
   }
 
   /**
+   * Delete all occurences of the value and
+   * return the LinkedListNode
+   * @param {*} value
+   * @return {LinkedListNode}
+   */
+  deleteAll(value) {
+    if (!this.head) {
+      return null;
+    }
+
+    let deletedNode = null;
+
+    // If the head must be deleted then make next node that is differ
+    // from the head to be a new head.
+    while (this.head && this.compare.equal(this.head.value, value)) {
+      deletedNode = this.head;
+      this.head = this.head.next;
+    }
+
+    let currentNode = this.head;
+
+    if (currentNode !== null) {
+      // If next node must be deleted then make next node to be a next next one.
+      while (currentNode.next) {
+        if (this.compare.equal(currentNode.next.value, value)) {
+          deletedNode = currentNode.next;
+          currentNode.next = currentNode.next.next;
+        } else {
+          currentNode = currentNode.next;
+        }
+      }
+    }
+
+    // Check if tail must be deleted.
+    if (this.compare.equal(this.tail.value, value)) {
+      this.tail = currentNode;
+    }
+
+    return deletedNode;
+  }
+
+  /**
    * Deletes the head of the LinkedList
-   * @returns {LinkedList} LinkedList Object
+   * @return {LinkedList} LinkedList Object
    */
   deleteHead() {
-    if (!this.head) return this;
+    if (this.isEmpty()) return null;
 
     const deletedNode = this.head;
     if (this.head.next) {
@@ -111,6 +152,34 @@ class LinkedList {
       this.tail = null;
     }
     return deletedNode;
+  }
+
+  /**
+   * Delete node from the tail position
+   * @return {LinkedListNode} LinkedListNode object
+   */
+  deleteTail(currNode = null, prevNode = null) {
+    if (this.isEmpty()) return null;
+
+    if (prevNode) {
+      this.tail = prevNode;
+      this.tail.next = null;
+      return currNode;
+    }
+
+    let deletedNode = null;
+
+    const arr = this.toArray();
+    if (arr.length > 1) {
+      deletedNode = arr[arr.length - 1];
+      this.tail = arr[arr.length - 2];
+      this.tail.next = null;
+      return deletedNode;
+    }
+
+    this.head = null;
+    this.tail = null;
+    return arr[0];
   }
 
   /**
@@ -162,10 +231,10 @@ class LinkedList {
   /**
    * Creates a LinkedList from an Array
    * @param {Array} arr
-   * @returns {LinkedList} LinkedList Object
+   * @return {LinkedList} LinkedList Object
    */
   fromArray(arr) {
-    if (!arr) return null;
+    if (arr.length === 0) return null;
 
     arr.forEach(item => this.append(item));
 
@@ -180,7 +249,7 @@ class LinkedList {
 
     let currentNode = this.head;
     while (currentNode) {
-      nodes.push(currentNode.value);
+      nodes.push(currentNode);
       currentNode = currentNode.next;
     }
     return nodes;
@@ -188,7 +257,7 @@ class LinkedList {
 
   /**
    * Reverses a given LinkedList
-   * @returns {LinkedList} LinkedList Object
+   * @return {LinkedList} LinkedList Object
    */
   reverse() {
     let currentNode = this.head;

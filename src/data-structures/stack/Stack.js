@@ -18,7 +18,7 @@ export default class Stack {
   /**
    * Call LinkedList prepend method, to insert from head
    * @param {*} value
-   * @returns {Stack}
+   * @return {Stack}
    */
   push(value) {
     this.linkedList.prepend(value);
@@ -27,7 +27,7 @@ export default class Stack {
 
   /**
    * Returns the top of the stack item / node
-   * @returns {*} any
+   * @return {*} any
    */
   peek() {
     if (this.isEmpty()) return null;

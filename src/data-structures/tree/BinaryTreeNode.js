@@ -91,4 +91,45 @@ export default class BinaryTreeNode {
 
     return false;
   }
+
+  /**
+   *
+   * @param {BinaryTreeNode} node
+   * @param {BinaryTreeNode} newNode
+   * @returns {BinaryTreeNode}
+   */
+  replaceChild(node, newNode) {
+    if (this.left && this.nodeComparator.equal(this.left, node)) {
+      this.left = newNode;
+    }
+
+    if (this.right && this.nodeComparator.equal(this.right, node)) {
+      this.right = newNode;
+    }
+
+    return this;
+  }
+
+  get leftHeight() {
+    if (!this.left) {
+      return 0;
+    }
+
+    return this.left.height + 1;
+  }
+
+  get rightHeight() {
+    if (!this.right) {
+      return 0;
+    }
+
+    return this.right.height + 1;
+  }
+
+  /**
+   * Get the height of the tree
+   */
+  get height() {
+    return Math.max(this.leftHeight, this.rightHeight);
+  }
 }

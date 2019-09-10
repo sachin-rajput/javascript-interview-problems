@@ -9,6 +9,7 @@ export default class BinaryTreeNode {
   constructor(value = null) {
     this.left = null;
     this.right = null;
+    this.parent = null;
     this.value = value;
 
     // To save meta information
@@ -25,11 +26,16 @@ export default class BinaryTreeNode {
   setLeft(node) {
     // Detach left node if it exists
     if (this.left) {
-      this.left = null;
+      this.left.parent = null;
     }
 
     // attach node to the left of current node
     this.left = node;
+
+    // re-attach current node as parent to node
+    if (this.left) {
+      this.left.parent = this;
+    }
 
     return this;
   }
@@ -42,11 +48,16 @@ export default class BinaryTreeNode {
   setRight(node) {
     // detach the right node if it exists
     if (this.right) {
-      this.right = null;
+      this.right.parent = null;
     }
 
     // attach node to the right of current node
     this.right = node;
+
+    // re-attach current node as parent to node
+    if (this.right) {
+      this.right.parent = this;
+    }
 
     return this;
   }
@@ -131,5 +142,66 @@ export default class BinaryTreeNode {
    */
   get height() {
     return Math.max(this.leftHeight, this.rightHeight);
+  }
+
+  /**
+   * Get the balance between left and right subtree
+   */
+  get balanceFactor() {
+    return this.leftHeight - this.rightHeight;
+  }
+
+  /**
+   * Gets the parent's sibling position in terms of left or right
+   * @returns {BinaryTreeNode}
+   */
+  get uncle() {
+    if (!this.parent) {
+      return undefined;
+    }
+
+    if (!this.parent.parent) {
+      return undefined;
+    }
+
+    if (!this.parent.parent.left || !this.parent.parent.right) {
+      return undefined;
+    }
+
+    // So we are sure we have grand parent and it has two childs
+    if (this.nodeComparator.equal(this.parent.parent.left, this.parent)) {
+      return this.parent.parent.right;
+    }
+
+    return this.parent.parent.left;
+  }
+
+  /**
+   *
+   * @param {*} value - value of the node
+   * @returns {BinaryTreeNode}
+   */
+  setValue(value) {
+    this.value = value;
+
+    return this;
+  }
+
+  /**
+   *
+   * @param {BinaryTreeNode} source
+   * @param {BinaryTreeNode} destination
+   */
+  static copyNode(source, destination) {
+    destination.setLeft(source.left);
+    destination.setRight(source.right);
+    destination.setValue(source.value);
+  }
+
+  /**
+   * Print BinaryTreeNode as String
+   */
+  toString() {
+    return this.traverseInOrder().toString();
   }
 }

@@ -182,6 +182,9 @@ describe("BinaryTreeNode", () => {
     left.setLeft(childLeft);
     right.setRight(childRight);
 
+    expect(left.uncle).not.toBeDefined();
+    expect(grandParent.uncle).not.toBeDefined();
+
     expect(childLeft.uncle).toBeDefined();
     expect(childLeft.uncle.value).toBe(6);
     expect(childRight.uncle).toBeDefined();
@@ -235,6 +238,6 @@ describe("BinaryTreeNode", () => {
     expect(node.right).toBeDefined();
 
     expect(newNode.left.value).toBe(6);
-    expect(newNode.right.value).toBeDefined(8);
+    expect(newNode.right.value).toBe(8);
   });
 });

@@ -51,4 +51,93 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
 
     return this;
   }
+
+  /**
+   *
+   * @param {*} value - value of the node
+   * @returns {BinarySearchTreeNode} BinarySearchTreeNode
+   */
+  find(value) {
+    if (this.nodeValueComparator.equal(value, this.value)) {
+      return this;
+    }
+
+    if (this.nodeValueComparator.lessThan(value, this.value) && this.left) {
+      return this.left.find(value);
+    }
+
+    if (this.nodeValueComparator.greaterThan(value, this.value) && this.right) {
+      return this.right.find(value);
+    }
+
+    return null;
+  }
+
+  /**
+   * Check if a value is present or not
+   *
+   * @param {*} value - value of the node
+   * @returns {Boolean} True or False
+   */
+  contains(value) {
+    return !!this.find(value);
+  }
+
+  /**
+   * Find the minimum node value by going to left until null
+   * @returns {BinarySearchTreeNode} BinarySearchTreeNode
+   */
+  findMin() {
+    if (!this.left) {
+      return this;
+    }
+
+    return this.left.findMin();
+  }
+
+  /**
+   *
+   * @param {*} value - value of the node
+   * @returns {Boolean} - True or False
+   */
+  remove(value) {
+    const nodeToRemove = this.find(value);
+
+    if (!nodeToRemove) return false;
+
+    const { parent } = nodeToRemove;
+
+    // no child exist for the nodeToRemove
+    if (!nodeToRemove.left && !nodeToRemove.right) {
+      if (parent) {
+        parent.removeChild(nodeToRemove);
+      } else {
+        nodeToRemove.setValue(undefined);
+      }
+    } else if (nodeToRemove.left && nodeToRemove.right) {
+      // two children exist for the nodeToRemove
+      const nextBiggerNode = nodeToRemove.right.findMin();
+      if (!this.nodeValueComparator.equal(nextBiggerNode, nodeToRemove.right)) {
+        this.remove(nextBiggerNode.value);
+        nodeToRemove.setValue(nextBiggerNode.value);
+
+        return true;
+      }
+      nodeToRemove.setValue(nodeToRemove.right.value);
+      nodeToRemove.setRight(nodeToRemove.right.right);
+    } else {
+      // only one child exist for the nodeToRemove
+      const childNode = nodeToRemove.left || nodeToRemove.right;
+
+      if (parent) {
+        parent.replaceChild(nodeToRemove, childNode);
+      } else {
+        BinaryTreeNode.copyNode(childNode, nodeToRemove);
+      }
+    }
+
+    nodeToRemove.parent = null;
+
+    return true;
+  }
 }

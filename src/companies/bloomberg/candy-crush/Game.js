@@ -1,5 +1,9 @@
 export default class Game {
   constructor(name, board = null) {
+    if (new.target === Game) {
+      throw new Error("Cannot create a Game instance.");
+    }
+
     this.name = name;
     this.board = board;
   }

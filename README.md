@@ -19,7 +19,7 @@ only and it is **not** meant to be used for production._
 
 Company Interview Questions with test suites
 
-### Bloomberg
+### [Bloomberg](src/companies/bloomberg)
 
 ## Data Structures
 

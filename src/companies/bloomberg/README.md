@@ -1,3 +1,3 @@
 # Bloomberg Interview Questions
 
-- [Candy Crush](/candy-crush)
+- [Candy Crush](/src/companies/candy-crush)

@@ -8,6 +8,7 @@ export default class Game {
     this.board = board;
   }
 
+  /* istanbul ignore next */
   play() {
     throw new Error("Please implement this in the game you create!");
   }

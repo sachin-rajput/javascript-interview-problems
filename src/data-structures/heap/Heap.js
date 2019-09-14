@@ -298,6 +298,7 @@ export default class Heap {
    * @param {*} secondItem
    * @return {boolean}
    */
+  /* istanbul ignore next */
   pairIsInCorrectOrder(firstItem, secondItem) {
     throw new Error(`This cannot be invoked by Heap Instance, 
       please implement pair comparision

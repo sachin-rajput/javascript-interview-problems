@@ -169,15 +169,15 @@ describe("BinaryTreeNode", () => {
 
     const left = new BinaryTreeNode(4);
     const right = new BinaryTreeNode(6);
+    const childLeft = new BinaryTreeNode(5);
+    const childRight = new BinaryTreeNode(7);
+
+    grandParent.setLeft(left);
 
     expect(left.uncle).not.toBeDefined();
-    expect(right.uncle).not.toBeDefined();
+    expect(childLeft.uncle).not.toBeDefined();
 
-    grandParent.setLeft(left).setRight(right);
-
-    const childLeft = new BinaryTreeNode(5);
-
-    const childRight = new BinaryTreeNode(7);
+    grandParent.setRight(right);
 
     left.setLeft(childLeft);
     right.setRight(childRight);
@@ -189,6 +189,56 @@ describe("BinaryTreeNode", () => {
     expect(childLeft.uncle.value).toBe(6);
     expect(childRight.uncle).toBeDefined();
     expect(childRight.uncle.value).toBe(4);
+  });
+
+  it("should detect right uncle", () => {
+    const grandParent = new BinaryTreeNode("grand-parent");
+    const parent = new BinaryTreeNode("parent");
+    const uncle = new BinaryTreeNode("uncle");
+    const child = new BinaryTreeNode("child");
+
+    expect(grandParent.uncle).not.toBeDefined();
+    expect(parent.uncle).not.toBeDefined();
+
+    grandParent.setLeft(parent);
+
+    expect(parent.uncle).not.toBeDefined();
+    expect(child.uncle).not.toBeDefined();
+
+    parent.setLeft(child);
+
+    expect(child.uncle).not.toBeDefined();
+
+    grandParent.setRight(uncle);
+
+    expect(parent.uncle).not.toBeDefined();
+    expect(child.uncle).toBeDefined();
+    expect(child.uncle).toEqual(uncle);
+  });
+
+  it("should detect left uncle", () => {
+    const grandParent = new BinaryTreeNode("grand-parent");
+    const parent = new BinaryTreeNode("parent");
+    const uncle = new BinaryTreeNode("uncle");
+    const child = new BinaryTreeNode("child");
+
+    expect(grandParent.uncle).not.toBeDefined();
+    expect(parent.uncle).not.toBeDefined();
+
+    grandParent.setRight(parent);
+
+    expect(parent.uncle).not.toBeDefined();
+    expect(child.uncle).not.toBeDefined();
+
+    parent.setRight(child);
+
+    expect(child.uncle).not.toBeDefined();
+
+    grandParent.setLeft(uncle);
+
+    expect(parent.uncle).not.toBeDefined();
+    expect(child.uncle).toBeDefined();
+    expect(child.uncle).toEqual(uncle);
   });
 
   it("should set a value.", () => {

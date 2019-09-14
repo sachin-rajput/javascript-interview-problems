@@ -20,6 +20,6 @@ describe("CandyCrush", () => {
     ];
 
     expect(newGame).toBeDefined();
-    expect(newGame.board).toBeDefined();
+    expect(newGame.play()).toBe(newGame.board);
   });
 });

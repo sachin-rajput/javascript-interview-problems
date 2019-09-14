@@ -28,7 +28,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
     }
 
     // If less than or equal to go left
-    if (this.nodeValueComparator.lessThanOrEqual(value, this.value)) {
+    if (this.nodeValueComparator.lessThan(value, this.value)) {
       if (this.left) {
         return this.left.insert(value);
       }
@@ -103,7 +103,9 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
   remove(value) {
     const nodeToRemove = this.find(value);
 
-    if (!nodeToRemove) return false;
+    if (!nodeToRemove) {
+      throw new Error("Item not found in the tree");
+    }
 
     const { parent } = nodeToRemove;
 

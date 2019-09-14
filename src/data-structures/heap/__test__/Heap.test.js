@@ -6,7 +6,6 @@ describe("Heap", () => {
       const heap = new Heap();
       heap.add(3);
     };
-
     expect(instantiateHeap).toThrow();
   });
 });

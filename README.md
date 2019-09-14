@@ -1,4 +1,4 @@
-# JavaScript Algorithms and Data Structures
+# JavaScript Algorithms and Data Structures with Companies Interview Questions
 
 [![Build Status](https://travis-ci.org/sachin-rajput/javascript-algorithms.svg?branch=master)](https://travis-ci.org/sachin-rajput/javascript-algorithms)
 [![codecov](https://codecov.io/gh/sachin-rajput/javascript-algorithms/branch/master/graph/badge.svg)](https://codecov.io/gh/sachin-rajput/javascript-algorithms)
@@ -15,6 +15,12 @@ to YouTube videos).
 _☝ Note that this project is meant to be used for learning and researching purposes
 only and it is **not** meant to be used for production._
 
+## Companies
+
+Company Interview Questions with test suites
+
+### Bloomberg
+
 ## Data Structures
 
 A data structure is a particular way of organizing and storing data in a computer so that it can
@@ -28,6 +34,11 @@ the data.
 - `B` [Doubly Linked List](src/data-structures/doubly-linked-list)
 - `B` [Queue](src/data-structures/queue)
 - `B` [Stack](src/data-structures/stack)
+- `B` [Heap](src/data-structures/heap) - max and min heap versions
+- `B` [Hash Table](src/data-structures/hash-table)
+
+- `A` [Tree](src/data-structures/tree)
+  - `A` [Binary Search Tree](src/data-structures/tree/binary-search-tree)
 
 ## How to use this repository
 

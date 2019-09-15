@@ -36,7 +36,8 @@ the data.
 - `B` [Stack](src/data-structures/stack)
 - `B` [Heap](src/data-structures/heap) - max and min heap versions
 - `B` [Hash Table](src/data-structures/hash-table)
-
+- `B` [Priority Queue](src/data-structures/priority-queue)
+- `A` [Trie](src/data-structures/trie)
 - `A` [Tree](src/data-structures/tree)
   - `A` [Binary Search Tree](src/data-structures/tree/binary-search-tree)
 

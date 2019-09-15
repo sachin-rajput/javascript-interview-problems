@@ -77,7 +77,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
    * Check if a value is present or not
    *
    * @param {*} value - value of the node
-   * @returns {Boolean} True or False
+   * @returns {boolean} True or False
    */
   contains(value) {
     return !!this.find(value);
@@ -98,7 +98,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
   /**
    *
    * @param {*} value - value of the node
-   * @returns {Boolean} - True or False
+   * @returns {boolean} - True or False
    */
   remove(value) {
     const nodeToRemove = this.find(value);

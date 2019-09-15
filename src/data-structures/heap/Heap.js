@@ -45,7 +45,7 @@ export default class Heap {
    * Check if the parent has a left child
    *
    * @param {*} parentIndex
-   * @returns {Boolean} True or False
+   * @returns {boolean} True or False
    */
   hasLeftChild(parentIndex) {
     return this.getLeftChildIndex(parentIndex) < this.heapContainer.length;
@@ -55,7 +55,7 @@ export default class Heap {
    * Check if the parent has a right child
    *
    * @param {*} parentIndex
-   * @returns {Boolean} True or False
+   * @returns {boolean} True or False
    */
   hasRightChild(parentIndex) {
     return this.getRightChildIndex(parentIndex) < this.heapContainer.length;
@@ -65,7 +65,7 @@ export default class Heap {
    * Check if the child has a parent
    *
    * @param {*} childIndex
-   * @returns {Boolean} True or False
+   * @returns {boolean} True or False
    */
   hasParent(childIndex) {
     return this.getParentIndex(childIndex) >= 0;
@@ -151,7 +151,7 @@ export default class Heap {
   /**
    * Check if the heap is empty
    *
-   * @returns {Boolean} - True or False
+   * @returns {boolean} - True or False
    */
   isEmpty() {
     return !this.heapContainer.length;

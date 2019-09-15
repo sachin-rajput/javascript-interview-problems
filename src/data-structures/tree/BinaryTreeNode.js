@@ -87,7 +87,7 @@ export default class BinaryTreeNode {
   /**
    *
    * @param {BinaryTreeNode} node
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   removeChild(node) {
     if (this.left && this.nodeComparator.equal(this.left, node)) {

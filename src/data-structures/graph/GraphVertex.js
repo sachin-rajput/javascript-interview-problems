@@ -116,7 +116,7 @@ export default class GraphVertex {
    * Find edge by vertex
    *
    * @param {GraphVertex} vertex
-   * @return {GraphEdge}
+   * @return {(GraphEdge|null)}
    */
   findEdge(vertex) {
     const checkEdge = (edge) => {

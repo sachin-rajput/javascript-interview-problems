@@ -55,7 +55,7 @@ export default class PriorityQueue extends MinHeap {
    *
    * @param {*} item
    * @param {*} customComparatorFunction
-   * @returns {Number[]}
+   * @return {Number[]}
    */
   findByValue(item) {
     return super.find(item, new Comparator(this.compareValues));

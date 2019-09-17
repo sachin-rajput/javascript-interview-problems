@@ -15,7 +15,7 @@ export default class Heap {
    * Return the left child index for the given parent index
    *
    * @param {*} parentIndex
-   * @returns {number} index of the left child
+   * @return {number} index of the left child
    */
   getLeftChildIndex(parentIndex) {
     return 2 * parentIndex + 1;
@@ -25,7 +25,7 @@ export default class Heap {
    * Return the right child index for the given parent index
    *
    * @param {*} parentIndex
-   * @returns {number} index of the right child
+   * @return {number} index of the right child
    */
   getRightChildIndex(parentIndex) {
     return 2 * parentIndex + 2;
@@ -35,7 +35,7 @@ export default class Heap {
    * Return the parent index for the given child index
    *
    * @param {*} childIndex
-   * @returns {number} index of the parent
+   * @return {number} index of the parent
    */
   getParentIndex(childIndex) {
     return Math.floor((childIndex - 1) / 2);
@@ -45,7 +45,7 @@ export default class Heap {
    * Check if the parent has a left child
    *
    * @param {*} parentIndex
-   * @returns {boolean} True or False
+   * @return {boolean} True or False
    */
   hasLeftChild(parentIndex) {
     return this.getLeftChildIndex(parentIndex) < this.heapContainer.length;
@@ -55,7 +55,7 @@ export default class Heap {
    * Check if the parent has a right child
    *
    * @param {*} parentIndex
-   * @returns {boolean} True or False
+   * @return {boolean} True or False
    */
   hasRightChild(parentIndex) {
     return this.getRightChildIndex(parentIndex) < this.heapContainer.length;
@@ -65,7 +65,7 @@ export default class Heap {
    * Check if the child has a parent
    *
    * @param {*} childIndex
-   * @returns {boolean} True or False
+   * @return {boolean} True or False
    */
   hasParent(childIndex) {
     return this.getParentIndex(childIndex) >= 0;
@@ -75,7 +75,7 @@ export default class Heap {
    * Get the value of the parent
    *
    * @param {*} childIndex
-   * @returns {*} - value of the parent
+   * @return {*} - value of the parent
    */
   parent(childIndex) {
     return this.heapContainer[this.getParentIndex(childIndex)];
@@ -85,7 +85,7 @@ export default class Heap {
    * Get the value of the left child
    *
    * @param {*} parentIndex
-   * @returns {*} - value of the left child
+   * @return {*} - value of the left child
    */
   leftChild(parentIndex) {
     return this.heapContainer[this.getLeftChildIndex(parentIndex)];
@@ -95,7 +95,7 @@ export default class Heap {
    * Get the value of the right child
    *
    * @param {*} parentIndex
-   * @returns {*} - value of the right child
+   * @return {*} - value of the right child
    */
   rightChild(parentIndex) {
     return this.heapContainer[this.getRightChildIndex(parentIndex)];
@@ -116,7 +116,7 @@ export default class Heap {
   /**
    * Get the first value from the heap
    *
-   * @returns {*} first item
+   * @return {*} first item
    */
   peek() {
     if (this.heapContainer.length === 0) {
@@ -129,7 +129,7 @@ export default class Heap {
   /**
    * Get the first item and remove from the heap
    *
-   * @returns {*} - item from heap
+   * @return {*} - item from heap
    */
   poll() {
     if (this.heapContainer.length === 0) {
@@ -151,7 +151,7 @@ export default class Heap {
   /**
    * Check if the heap is empty
    *
-   * @returns {boolean} - True or False
+   * @return {boolean} - True or False
    */
   isEmpty() {
     return !this.heapContainer.length;
@@ -180,7 +180,7 @@ export default class Heap {
    *
    * @param {*} item
    * @param {*} compare
-   * @returns {Heap} - instance of Min or Max Heap
+   * @return {Heap} - instance of Min or Max Heap
    */
   remove(item, comparator = this.compare) {
     // Get Indexes to be removed
@@ -223,7 +223,7 @@ export default class Heap {
    *
    * @param {*} item
    * @param {*} compare
-   * @returns {[number]} - array of indexes for items found
+   * @return {[number]} - array of indexes for items found
    */
   find(item, compare = this.compare) {
     const itemsFoundIndex = [];

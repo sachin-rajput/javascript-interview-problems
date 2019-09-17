@@ -197,7 +197,7 @@ class LinkedList {
       if (callback && callback(currentNode.value)) {
         return currentNode;
       }
-      if (this.compare.equal(currentNode.value, value)) {
+      if (value !== undefined && this.compare.equal(currentNode.value, value)) {
         return currentNode;
       }
       currentNode = currentNode.next;
@@ -242,7 +242,9 @@ class LinkedList {
   }
 
   /**
-   * Returns an array of values from LinkedList
+   * Returns an array of LinkedListNode from LinkedList
+   *
+   * @return {LinkedListNode[]}
    */
   toArray() {
     const nodes = [];

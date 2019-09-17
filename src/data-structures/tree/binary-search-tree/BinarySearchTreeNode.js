@@ -18,7 +18,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
    * Insert into BST
    *
    * @param {*} [value] - value of the node
-   * @returns {BinarySearchTreeNode} BinarySearchTreeNode
+   * @return {BinarySearchTreeNode} BinarySearchTreeNode
    */
   insert(value) {
     // If no value exists for current node
@@ -55,7 +55,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
   /**
    *
    * @param {*} value - value of the node
-   * @returns {BinarySearchTreeNode} BinarySearchTreeNode
+   * @return {BinarySearchTreeNode} BinarySearchTreeNode
    */
   find(value) {
     if (this.nodeValueComparator.equal(value, this.value)) {
@@ -77,7 +77,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
    * Check if a value is present or not
    *
    * @param {*} value - value of the node
-   * @returns {boolean} True or False
+   * @return {boolean} True or False
    */
   contains(value) {
     return !!this.find(value);
@@ -85,7 +85,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
 
   /**
    * Find the minimum node value by going to left until null
-   * @returns {BinarySearchTreeNode} BinarySearchTreeNode
+   * @return {BinarySearchTreeNode} BinarySearchTreeNode
    */
   findMin() {
     if (!this.left) {
@@ -98,7 +98,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
   /**
    *
    * @param {*} value - value of the node
-   * @returns {boolean} - True or False
+   * @return {boolean} - True or False
    */
   remove(value) {
     const nodeToRemove = this.find(value);

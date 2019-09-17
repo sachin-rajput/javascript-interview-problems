@@ -20,7 +20,7 @@ export default class TrieNode {
    * Get the list of children nodes it has
    *
    * @param {string} character
-   * @returns {TrieNode} - TrieNode
+   * @return {TrieNode} - TrieNode
    */
   getChild(character) {
     return this.children.get(character);
@@ -31,7 +31,7 @@ export default class TrieNode {
    *
    * @param {string} character
    * @param {boolean} isCompleteWord
-   * @returns {TrieNode} - TrieNode
+   * @return {TrieNode} - TrieNode
    */
   addChild(character, isCompleteWord = false) {
     // Let's add the character if it does not exist
@@ -52,7 +52,7 @@ export default class TrieNode {
    * Delete a character from the Trie
    *
    * @param {string} character
-   * @returns {TrieNode} - Returns the TrieNode
+   * @return {TrieNode} - Returns the TrieNode
    */
   removeChild(character) {
     const childNode = this.getChild(character);
@@ -70,7 +70,7 @@ export default class TrieNode {
    * Check if current character has a child character
    *
    * @param {string} character
-   * @returns {boolean}
+   * @return {boolean}
    */
   hasChild(character) {
     return this.children.has(character);
@@ -79,7 +79,7 @@ export default class TrieNode {
   /**
    * Check if current character has child nodes / characters
    *
-   * @returns {boolean}
+   * @return {boolean}
    */
   hasChildren() {
     return this.children.getKeys().length > 0;

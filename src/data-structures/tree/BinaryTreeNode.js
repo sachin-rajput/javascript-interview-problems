@@ -21,7 +21,7 @@ export default class BinaryTreeNode {
   /**
    * Set left node for current node
    * @param {BinaryTreeNode} node
-   * @returns {BinaryTreeNode}
+   * @return {BinaryTreeNode}
    */
   setLeft(node) {
     // Detach left node if it exists
@@ -43,7 +43,7 @@ export default class BinaryTreeNode {
   /**
    * Set right node for current node
    * @param {BinaryTreeNode} node
-   * @returns {BinaryTreeNode}
+   * @return {BinaryTreeNode}
    */
   setRight(node) {
     // detach the right node if it exists
@@ -87,7 +87,7 @@ export default class BinaryTreeNode {
   /**
    *
    * @param {BinaryTreeNode} node
-   * @returns {boolean}
+   * @return {boolean}
    */
   removeChild(node) {
     if (this.left && this.nodeComparator.equal(this.left, node)) {
@@ -107,7 +107,7 @@ export default class BinaryTreeNode {
    *
    * @param {BinaryTreeNode} node
    * @param {BinaryTreeNode} newNode
-   * @returns {BinaryTreeNode}
+   * @return {BinaryTreeNode}
    */
   replaceChild(node, newNode) {
     if (this.left && this.nodeComparator.equal(this.left, node)) {
@@ -153,7 +153,7 @@ export default class BinaryTreeNode {
 
   /**
    * Gets the parent's sibling position in terms of left or right
-   * @returns {BinaryTreeNode}
+   * @return {BinaryTreeNode}
    */
   get uncle() {
     if (!this.parent) {
@@ -179,7 +179,7 @@ export default class BinaryTreeNode {
   /**
    *
    * @param {*} value - value of the node
-   * @returns {BinaryTreeNode}
+   * @return {BinaryTreeNode}
    */
   setValue(value) {
     this.value = value;

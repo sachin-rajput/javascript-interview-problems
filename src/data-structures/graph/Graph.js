@@ -152,6 +152,73 @@ export default class Graph {
   }
 
   /**
+   * @return {number}
+   */
+  getWeight() {
+    return this.getAllEdges().reduce((weight, graphEdge) => {
+      return weight + graphEdge.weight;
+    }, 0);
+  }
+
+  /**
+   * Reverse all the edges in directed graph.
+   * @return {Graph}
+   */
+  reverse() {
+    /** @param {GraphEdge} edge */
+    this.getAllEdges().forEach((edge) => {
+      // Delete straight edge from graph and from vertices.
+      this.deleteEdge(edge);
+
+      // Reverse the edge.
+      edge.reverse();
+
+      // Add reversed edge back to the graph and its vertices.
+      this.addEdge(edge);
+    });
+
+    return this;
+  }
+
+  /**
+   * @return {object}
+   */
+  getVerticesIndices() {
+    const verticesIndices = {};
+    this.getAllVertices().forEach((vertex, index) => {
+      verticesIndices[vertex.getKey()] = index;
+    });
+
+    return verticesIndices;
+  }
+
+  /**
+   * @return {*[][]}
+   */
+  getAdjacencyMatrix() {
+    const vertices = this.getAllVertices();
+    const verticesIndices = this.getVerticesIndices();
+
+    // Init matrix with infinities meaning that there is no ways of
+    // getting from one vertex to another yet.
+    const adjacencyMatrix = Array(vertices.length)
+      .fill(null)
+      .map(() => {
+        return Array(vertices.length).fill(Infinity);
+      });
+
+    // Fill the columns.
+    vertices.forEach((vertex, vertexIndex) => {
+      vertex.getNeighbors().forEach((neighbor) => {
+        const neighborIndex = verticesIndices[neighbor.getKey()];
+        adjacencyMatrix[vertexIndex][neighborIndex] = this.findEdge(vertex, neighbor).weight;
+      });
+    });
+
+    return adjacencyMatrix;
+  }
+
+  /**
    * Convert the vertices list to Array and return the toString
    */
   toString() {

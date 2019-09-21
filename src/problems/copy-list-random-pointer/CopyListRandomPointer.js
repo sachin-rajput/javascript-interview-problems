@@ -32,8 +32,7 @@ function Node(val, next, random) {
  * @return {Node}
  */
 function copyRandomList(head) {
-  // Handle the base case
-  if (!head) return head;
+  if (!head) return null;
 
   let weavedHead;
   let backup;

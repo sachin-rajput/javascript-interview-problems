@@ -9,8 +9,8 @@ const lengthOfLongestSubstring = (s) => {
   if (!s) return 0;
   if (s.length <= 1) return s.length;
 
-  const lookup = new Map();
   const len = s.length;
+  const lookup = new Map();
 
   let max = 0;
   let start = 0;

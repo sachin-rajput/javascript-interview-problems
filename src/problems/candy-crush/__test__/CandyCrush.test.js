@@ -1,12 +1,8 @@
-import CandyCrush from "../CandyCrush";
+import candyCrush from "../CandyCrush";
 
 describe("CandyCrush", () => {
   it("should create an instance of candycrush", () => {
-    const newGame = new CandyCrush("CandyCrush");
-
-    expect(newGame.board).toBeNull();
-
-    newGame.board = [
+    let board = [
       [110, 5, 112, 113, 114],
       [210, 211, 5, 213, 214],
       [310, 311, 3, 313, 314],
@@ -19,7 +15,8 @@ describe("CandyCrush", () => {
       [4, 1, 4, 4, 1014]
     ];
 
-    expect(newGame).toBeDefined();
-    expect(newGame.play()).toBe(newGame.board);
+    board = candyCrush(board);
+    expect(board[0]).toEqual([0, 0, 0, 0, 0]);
+    expect(board[4]).toEqual([210, 0, 0, 0, 214]);
   });
 });

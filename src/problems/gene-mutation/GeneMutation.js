@@ -56,10 +56,10 @@ const minMutation = (start, end, bank) => {
   return -1;
 };
 
-const start = "AACCGGTT";
-const end = "AAACGGTA";
-const bank = ["AACCGGTA", "AACCGCTA", "AAACGGTA"];
+// const start = "AACCGGTT";
+// const end = "AAACGGTA";
+// const bank = ["AACCGGTA", "AACCGCTA", "AAACGGTA"];
 
-console.log(minMutation(start, end, bank));
+// console.log(minMutation(start, end, bank));
 
-// export default minMutation;
+export default minMutation;
